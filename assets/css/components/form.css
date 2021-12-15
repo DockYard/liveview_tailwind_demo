@@ -1,0 +1,9 @@
+@layer components {
+  form.phx-form label {
+    @apply font-bold mb-1;
+  }
+
+  form.phx-form input {
+    @apply border border-neutral-200 rounded h-10 py-1.5 px-2.5 w-full text-sm mb-4;
+  }
+}

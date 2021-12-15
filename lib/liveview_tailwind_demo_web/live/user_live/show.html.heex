@@ -1,4 +1,4 @@
-<h1>Show User</h1>
+<h1 class="mb-5 text-4xl">Show User</h1>
 
 <%= if @live_action in [:edit] do %>
   <.modal return_to={Routes.user_show_path(@socket, :show, @user)}>
@@ -13,19 +13,19 @@
   </.modal>
 <% end %>
 
-<ul>
+<ul class="list-[circle] list-inside mb-6 space-y-3.5">
 
   <li>
-    <strong>Name:</strong>
+    <strong class="font-bold">Name:</strong>
     <%= @user.name %>
   </li>
 
   <li>
-    <strong>Email:</strong>
+    <strong class="font-bold">Email:</strong>
     <%= @user.email %>
   </li>
 
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.user_show_path(@socket, :edit, @user), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.user_index_path(@socket, :index) %></span>
+<span><%= live_patch "Edit", to: Routes.user_show_path(@socket, :edit, @user), class: "button-nav" %></span> |
+<span class="text-blue-700"><%= live_redirect "Back", to: Routes.user_index_path(@socket, :index) %></span>

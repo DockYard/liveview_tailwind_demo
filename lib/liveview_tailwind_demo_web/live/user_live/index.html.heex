@@ -1,4 +1,4 @@
-<h1>Listing Users</h1>
+<h1 class="mb-5 text-4xl">Listing Users</h1>
 
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.user_index_path(@socket, :index)}>
@@ -13,7 +13,7 @@
   </.modal>
 <% end %>
 
-<table>
+<table class="phx-table">
   <thead>
     <tr>
       <th>Name</th>
@@ -28,7 +28,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
 
-        <td>
+        <td class="text-blue-700">
           <span><%= live_redirect "Show", to: Routes.user_show_path(@socket, :show, user) %></span>
           <span><%= live_patch "Edit", to: Routes.user_index_path(@socket, :edit, user) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, data: [confirm: "Are you sure?"] %></span>
@@ -38,4 +38,4 @@
   </tbody>
 </table>
 
-<span><%= live_patch "New User", to: Routes.user_index_path(@socket, :new) %></span>
+<span class="text-blue-700"><%= live_patch "New User", to: Routes.user_index_path(@socket, :new) %></span>
