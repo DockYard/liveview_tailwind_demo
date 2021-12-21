@@ -58,4 +58,66 @@ defmodule LiveviewTailwindDemo.AccountsTest do
       assert %Ecto.Changeset{} = Accounts.change_user(user)
     end
   end
+
+  describe "subscriptions" do
+    alias LiveviewTailwindDemo.Accounts.Subscription
+
+    import LiveviewTailwindDemo.AccountsFixtures
+
+    @invalid_attrs %{end: nil, limit: nil, start: nil, tags: nil, title: nil}
+
+    test "list_subscriptions/0 returns all subscriptions" do
+      subscription = subscription_fixture()
+      assert Accounts.list_subscriptions() == [subscription]
+    end
+
+    test "get_subscription!/1 returns the subscription with given id" do
+      subscription = subscription_fixture()
+      assert Accounts.get_subscription!(subscription.id) == subscription
+    end
+
+    test "create_subscription/1 with valid data creates a subscription" do
+      valid_attrs = %{end: ~T[14:00:00], limit: 42, start: ~D[2021-12-20], tags: [], title: "some title"}
+
+      assert {:ok, %Subscription{} = subscription} = Accounts.create_subscription(valid_attrs)
+      assert subscription.end == ~T[14:00:00]
+      assert subscription.limit == 42
+      assert subscription.start == ~D[2021-12-20]
+      assert subscription.tags == []
+      assert subscription.title == "some title"
+    end
+
+    test "create_subscription/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Accounts.create_subscription(@invalid_attrs)
+    end
+
+    test "update_subscription/2 with valid data updates the subscription" do
+      subscription = subscription_fixture()
+      update_attrs = %{end: ~T[15:01:01], limit: 43, start: ~D[2021-12-21], tags: [], title: "some updated title"}
+
+      assert {:ok, %Subscription{} = subscription} = Accounts.update_subscription(subscription, update_attrs)
+      assert subscription.end == ~T[15:01:01]
+      assert subscription.limit == 43
+      assert subscription.start == ~D[2021-12-21]
+      assert subscription.tags == []
+      assert subscription.title == "some updated title"
+    end
+
+    test "update_subscription/2 with invalid data returns error changeset" do
+      subscription = subscription_fixture()
+      assert {:error, %Ecto.Changeset{}} = Accounts.update_subscription(subscription, @invalid_attrs)
+      assert subscription == Accounts.get_subscription!(subscription.id)
+    end
+
+    test "delete_subscription/1 deletes the subscription" do
+      subscription = subscription_fixture()
+      assert {:ok, %Subscription{}} = Accounts.delete_subscription(subscription)
+      assert_raise Ecto.NoResultsError, fn -> Accounts.get_subscription!(subscription.id) end
+    end
+
+    test "change_subscription/1 returns a subscription changeset" do
+      subscription = subscription_fixture()
+      assert %Ecto.Changeset{} = Accounts.change_subscription(subscription)
+    end
+  end
 end

@@ -18,4 +18,27 @@ defmodule LiveviewTailwindDemo.AccountsFixtures do
 
     user
   end
+
+  @doc """
+  Generate a unique subscription title.
+  """
+  def unique_subscription_title, do: "some title#{System.unique_integer([:positive])}"
+
+  @doc """
+  Generate a subscription.
+  """
+  def subscription_fixture(attrs \\ %{}) do
+    {:ok, subscription} =
+      attrs
+      |> Enum.into(%{
+        end: ~T[14:00:00],
+        limit: 42,
+        start: ~D[2021-12-20],
+        tags: [],
+        title: unique_subscription_title()
+      })
+      |> LiveviewTailwindDemo.Accounts.create_subscription()
+
+    subscription
+  end
 end
