@@ -1,5 +1,5 @@
-<h1>New Subscription</h1>
+<h1 class="font-extralight mb-5 text-4xl">New Subscription</h1>
 
 <%= render "form.html", Map.put(assigns, :action, Routes.subscription_path(@conn, :create)) %>
 
-<span><%= link "Back", to: Routes.subscription_path(@conn, :index) %></span>
+<span class="font-extralight text-blue-700"><%= link "Back", to: Routes.subscription_path(@conn, :index) %></span>

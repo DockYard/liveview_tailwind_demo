@@ -13,22 +13,22 @@
   </.modal>
 <% end %>
 
-<table class="phx-table">
+<table class="table w-full mb-6 text-left align-middle">
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email</th>
+    <tr class="border-neutral-200 border-b">
+      <th class="first:pr-0 px-4 py-3">Name</th>
+      <th class="first:pr-0 px-4 py-3">Email</th>
 
-      <th></th>
+      <th class="px-4 pl-3"></th>
     </tr>
   </thead>
   <tbody id="users">
     <%= for user <- @users do %>
-      <tr id={"user-#{user.id}"}>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
+      <tr id={"user-#{user.id}"} class="border-neutral-200 border-b">
+        <td class="first:pl-0 last:pr-0 px-4 py-3"><%= user.name %></td>
+        <td class="first:pl-0 last:pr-0 px-4 py-3"><%= user.email %></td>
 
-        <td class="text-blue-700">
+        <td class="px-4 py-3 text-blue-700">
           <span><%= live_redirect "Show", to: Routes.user_show_path(@socket, :show, user) %></span>
           <span><%= live_patch "Edit", to: Routes.user_index_path(@socket, :edit, user) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: user.id, data: [confirm: "Are you sure?"] %></span>

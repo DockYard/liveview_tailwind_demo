@@ -16,16 +16,16 @@
 <ul class="list-[circle] list-inside mb-6 space-y-3.5">
 
   <li>
-    <strong class="font-bold">Name:</strong>
+    <strong>Name:</strong>
     <%= @user.name %>
   </li>
 
   <li>
-    <strong class="font-bold">Email:</strong>
+    <strong>Email:</strong>
     <%= @user.email %>
   </li>
 
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.user_show_path(@socket, :edit, @user), class: "button-nav" %></span> |
+<span><%= live_patch "Edit", to: Routes.user_show_path(@socket, :edit, @user), class: "button-primary" %></span> |
 <span class="text-blue-700"><%= live_redirect "Back", to: Routes.user_index_path(@socket, :index) %></span>

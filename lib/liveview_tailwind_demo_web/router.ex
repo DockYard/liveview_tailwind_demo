@@ -19,6 +19,8 @@ defmodule LiveviewTailwindDemoWeb.Router do
 
     get "/", PageController, :index
 
+    resources "/subscriptions", SubscriptionController
+
     live "/users", UserLive.Index, :index
     live "/users/new", UserLive.Index, :new
     live "/users/:id/edit", UserLive.Index, :edit
