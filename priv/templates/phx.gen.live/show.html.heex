@@ -16,11 +16,11 @@
 <ul class="list-[circle] list-inside mb-6 space-y-3.5">
 <%= for {k, _} <- schema.attrs do %>
   <li>
-    <strong class="font-bold"><%= Phoenix.Naming.humanize(Atom.to_string(k)) %>:</strong>
+    <strong><%= Phoenix.Naming.humanize(Atom.to_string(k)) %>:</strong>
     <%%= @<%= schema.singular %>.<%= k %> %>
   </li>
 <% end %>
 </ul>
 
-<span><%%= live_patch "Edit", to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "button" %></span> |
+<span><%%= live_patch "Edit", to: Routes.<%= schema.route_helper %>_show_path(@socket, :edit, @<%= schema.singular %>), class: "button-primary" %></span> |
 <span class="text-blue-700"><%%= live_redirect "Back", to: Routes.<%= schema.route_helper %>_index_path(@socket, :index) %></span>

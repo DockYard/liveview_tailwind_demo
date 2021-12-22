@@ -1,0 +1,13 @@
+<h1 class="font-extralight mb-5 text-4xl">Show <%= schema.human_singular %></h1>
+
+<ul class="list-[circle] list-inside mb-6 space-y-3.5">
+<%= for {k, _} <- schema.attrs do %>
+  <li>
+    <strong><%= Phoenix.Naming.humanize(Atom.to_string(k)) %>:</strong>
+    <%%= @<%= schema.singular %>.<%= k %> %>
+  </li>
+<% end %>
+</ul>
+
+<span class="font-light text-blue-700"><%%= link "Edit", to: Routes.<%= schema.route_helper %>_path(@conn, :edit, @<%= schema.singular %>) %></span> |
+<span class="font-light text-blue-700"><%%= link "Back", to: Routes.<%= schema.route_helper %>_path(@conn, :index) %></span>
